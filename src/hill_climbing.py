@@ -1,25 +1,45 @@
-import numpy as np
-from agent import Agent
 from map import Map
+import numpy as np
 from config import *
+from agent import Agent
+from local_search_algorithms import HillClimbing
+import pygame
 
-class HillClimbing:
-    def __init__(self, metric : callable, agent : Agent, map : Map) -> None:
-        self.metric = metric
-        self.actions = actions
-        self.agent = agent
+def main(debug = False) -> None:
+    map = Map()
+    agent = Agent()
+    screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    clock = pygame.time.Clock()
+    algorithm = HillClimbing(agent = agent, map = map)
 
-    def evaluate(self, position : float) -> str:
-        max_metric: float = 0
-        best_action: str = ""
-        for action in self.actions:
-            metric = self.metric(position + self.agent.get_actions()[action])
-            if metric > max_metric:
-                max_metric = metric
-                best_action = action
-        take_rand_action: float = rand.rand()
-        if take_rand_action > Rand_action_thres:
-            best_action = rand.choice(self.actions)
-            # best_action = rand.choice([ i for i in self.actions if i != best_action])
+    if debug:
+        itr = 0
+        
+    while True:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+        init_pos = agent.get_state()['position']
+        best_action = algorithm.evaluate(init_pos)
+        init_metric = map.metric(init_pos)
+        agent.take_action(best_action)
+        new_metric = map.metric(agent.get_state()['position'])
 
-        return best_action
+        if debug:
+            if itr % 1000 == 0:
+                print("Iteration: ", itr)
+                print("Initial position:", init_pos)
+                print("Initial metric: ", init_metric)
+                print("Best action: ", best_action)
+                print("Best action's metric: ", new_metric)
+        itr += 1
+
+        screen.fill(WHITE)
+        map.render(screen)
+        agent.render(screen) 
+        pygame.display.update()
+
+if __name__ == "__main__":
+    main(debug=True)

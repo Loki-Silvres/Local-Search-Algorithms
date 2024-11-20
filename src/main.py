@@ -1,8 +1,8 @@
-from map import metric, Map
+from map import Map
 import numpy as np
 from config import *
 from agent import Agent
-from hill_climbing import HillClimbing
+from local_search_algorithms import HillClimbing
 import pygame
 
 def main(debug = False) -> None:
@@ -10,23 +10,23 @@ def main(debug = False) -> None:
     agent = Agent()
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pygame.time.Clock()
-    algorithm = HillClimbing(metric = metric, agent = agent, map = map)
+    algorithm = HillClimbing(agent = agent, map = map)
 
     if debug:
         itr = 0
-        
+
     while True:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-        # agent.update()
+
         init_pos = agent.get_state()['position']
         best_action = algorithm.evaluate(init_pos)
-        init_metric = metric(init_pos)
+        init_metric = map.metric(init_pos)
         agent.take_action(best_action)
-        new_metric = metric(agent.get_state()['position'])
+        new_metric = map.metric(agent.get_state()['position'])
 
         if debug:
 

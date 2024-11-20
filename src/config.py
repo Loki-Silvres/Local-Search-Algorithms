@@ -1,42 +1,42 @@
 import numpy as np
 from numpy import random as rand
 SEED : int = 42
-rng = rand.RandomState(SEED)
+RNG = rand.RandomState(SEED)
 
-COLUMNS = 17
-ROWS = 13
+COLUMNS: int = 17
+ROWS: int = 13
 
-TILESIZE = 32
+TILESIZE: int = 32
 
-WINDOW_WIDTH = COLUMNS * TILESIZE
-WINDOW_HEIGHT = ROWS * TILESIZE
+WINDOW_WIDTH: int = COLUMNS * TILESIZE
+WINDOW_HEIGHT: int = ROWS * TILESIZE
 
-FPS = 30
+FPS: int = 30
 
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+BLACK: tuple[int, int, int] = (0, 0, 0)
+WHITE: tuple[int, int, int] = (255, 255, 255)
+RED: tuple[int, int, int] = (255, 0, 0)
+GREEN: tuple[int, int, int] = (0, 255, 0)
+BLUE: tuple[int, int, int] = (0, 0, 255)
 
 HILL_COLOUR = GREEN
 
-start : int = -4
-end : int = 4
+MAP_START : int = -4
+MAP_END : int = 4
 
-assert end > start 
+assert MAP_END > MAP_START 
 
 N_waves : int = 30
 N_points : int = 1000
 
-MEANS : np.ndarray = rng.randn(N_waves)
-SIGMAS : np.ndarray = rng.rand(N_waves) 
+MEANS : np.ndarray = RNG.randn(N_waves)
+SIGMAS : np.ndarray = RNG.rand(N_waves) 
 
-agent_step : float = 0.01
+AGENT_STEP : float = 0.01
 AGENT_RADIUS : float = 2
-actions : list = ['left', 'right']
+ACTIONS : list = ['left', 'right']
 
-N_iters: int = 10000
-Rand_action_thres: float = 0.99
+NUM_ITERS: int = 10000
+RANDOM_ACTION_THRES: float = 0.99
 
 
