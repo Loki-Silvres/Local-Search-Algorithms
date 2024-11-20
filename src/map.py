@@ -1,6 +1,7 @@
 import numpy as np
 from config import *
 import matplotlib.pyplot as plt
+import pygame
 
 def gaussian(x, mu = 0, sig = 1) -> float:
     return (
@@ -12,6 +13,14 @@ def get_height(point : float) -> float:
 
 def metric(point : float) -> float:
     return get_height(point)
+
+class Map:
+    def __init__(self) -> None:
+        pass
+
+    def render(self, screen : pygame.Surface) -> None:
+        pass
+
 
 if __name__ == "__main__":
     

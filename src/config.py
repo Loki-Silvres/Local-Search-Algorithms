@@ -3,6 +3,19 @@ from numpy import random as rand
 SEED : int = 42
 rng = rand.RandomState(SEED)
 
+COLUMNS = 17
+ROWS = 13
+
+TILESIZE = 32
+
+WINDOW_WIDTH = COLUMNS * TILESIZE
+WINDOW_HEIGHT = ROWS * TILESIZE
+
+FPS = 30
+
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
 start : int = -4
 end : int = 4
 
