@@ -1,9 +1,10 @@
 import numpy as np
 from agent import Agent
+from map import Map
 from config import *
 
 class HillClimbing:
-    def __init__(self, metric : callable, agent : Agent) -> None:
+    def __init__(self, metric : callable, agent : Agent, map : Map) -> None:
         self.metric = metric
         self.actions = actions
         self.agent = agent
