@@ -18,7 +18,7 @@ class HillClimbing:
                 max_metric = metric
                 best_action = action
         take_rand_action: float = rand.rand()
-        if take_rand_action > RANDOM_ACTION_THRES:
+        if take_rand_action < RANDOM_ACTION_THRES:
             best_action = rand.choice(self.actions)
 
         return best_action

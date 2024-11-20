@@ -37,6 +37,6 @@ AGENT_RADIUS : float = 2
 ACTIONS : list = ['left', 'right']
 
 NUM_ITERS: int = 10000
-RANDOM_ACTION_THRES: float = 0.99
+RANDOM_ACTION_THRES: float = 0.30
 
 

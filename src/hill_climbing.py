@@ -12,9 +12,6 @@ def main(debug = False) -> None:
     clock = pygame.time.Clock()
     algorithm = HillClimbing(agent = agent, map = map)
 
-    if debug:
-        itr = 0
-        
     while True:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -27,19 +24,10 @@ def main(debug = False) -> None:
         agent.take_action(best_action)
         new_metric = map.metric(agent.get_state()['position'])
 
-        if debug:
-            if itr % 1000 == 0:
-                print("Iteration: ", itr)
-                print("Initial position:", init_pos)
-                print("Initial metric: ", init_metric)
-                print("Best action: ", best_action)
-                print("Best action's metric: ", new_metric)
-        itr += 1
-
         screen.fill(WHITE)
         map.render(screen)
         agent.render(screen) 
         pygame.display.update()
 
 if __name__ == "__main__":
-    main(debug=True)
+    main()
